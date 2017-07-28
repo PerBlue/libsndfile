@@ -331,13 +331,48 @@ typedef	struct SNDFILE_tag	SNDFILE ;
 ** 64 bit file offsets.
 ** On windows, we need to allow the same header file to be compiler by both GCC
 ** and the Microsoft compiler.
-*/
+
 
 #if (defined (_MSCVER) || defined (_MSC_VER) && (_MSC_VER < 1310))
 typedef __int64		sf_count_t ;
 #define SF_COUNT_MAX		0x7fffffffffffffffi64
 #else
 typedef __int64	sf_count_t ;
+#define SF_COUNT_MAX		0x7FFFFFFFFFFFFFFFLL
+#endif
+*/
+
+#if defined(_WIN32)
+
+#  if defined(__CYGWIN__)
+#    include <stdint.h>
+     typedef int64_t sf_count_t;
+#define SF_COUNT_MAX		0x7FFFFFFFFFFFFFFFLL
+#  elif defined(__MINGW32__)
+#    include <sys/types.h>
+     typedef long long sf_count_t;
+#define SF_COUNT_MAX		0x7FFFFFFFFFFFFFFFLL
+#  elif defined(__MWERKS__)
+     typedef long long sf_count_t;
+#define SF_COUNT_MAX		0x7FFFFFFFFFFFFFFFLL
+#  else
+     /* MSVC/Borland */
+     typedef __int64 sf_count_t;
+#define SF_COUNT_MAX		0x7FFFFFFFFFFFFFFFLL
+#  endif
+
+#elif defined(__MACOS__)
+
+#  include <sys/types.h>
+   typedef SInt64 sf_count_t;
+#define SF_COUNT_MAX		0x7FFFFFFFFFFFFFFFLL
+#elif (defined(__APPLE__) && defined(__MACH__)) /* MacOS X Framework build */
+
+#  include <inttypes.h>
+   typedef int64_t sf_count_t;
+#define SF_COUNT_MAX		0x7FFFFFFFFFFFFFFFLL
+#else
+	typedef long long sf_count_t;
 #define SF_COUNT_MAX		0x7FFFFFFFFFFFFFFFLL
 #endif
 
