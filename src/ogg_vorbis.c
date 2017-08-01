@@ -76,7 +76,7 @@
 #include <vorbis/codec.h>
 #include <vorbis/vorbisenc.h>
 
-#include "ogg.h"
+#include "sf_ogg.h"
 
 typedef int convert_func (SF_PRIVATE *psf, int, void *, int, int, float **) ;
 
