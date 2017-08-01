@@ -361,16 +361,9 @@ typedef __int64	sf_count_t ;
 #define SF_COUNT_MAX		0x7FFFFFFFFFFFFFFFLL
 #  endif
 
-#elif defined(__MACOS__)
-
-#  include <sys/types.h>
-   typedef SInt64 sf_count_t;
-#define SF_COUNT_MAX		0x7FFFFFFFFFFFFFFFLL
-#elif (defined(__APPLE__) && defined(__MACH__)) /* MacOS X Framework build */
-
-#  include <inttypes.h>
-   typedef int64_t sf_count_t;
-#define SF_COUNT_MAX		0x7FFFFFFFFFFFFFFFLL
+#elif __APPLE__
+     typedef int64_t	sf_count_t ;
+     #define SF_COUNT_MAX		0x7FFFFFFFFFFFFFFFLL
 #else
 	typedef long long sf_count_t;
 #define SF_COUNT_MAX		0x7FFFFFFFFFFFFFFFLL

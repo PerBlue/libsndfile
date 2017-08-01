@@ -1,5 +1,9 @@
 /* Set to 1 if the compile is GNU GCC. */
+#if __APPLE__
+#define COMPILER_IS_GCC 0
+#else
 #define COMPILER_IS_GCC 1
+#endif
 
 /* Target processor clips on negative float to int conversion. */
 #define CPU_CLIPS_NEGATIVE 0
@@ -21,6 +25,8 @@
 
 /* Define to 1 if you have the <byteswap.h> header file. */
 #ifdef WIN32
+#define HAVE_BYTESWAP_H 0
+#elif __APPLE__
 #define HAVE_BYTESWAP_H 0
 #else
 #define HAVE_BYTESWAP_H 1
@@ -48,6 +54,8 @@
 /* Define to 1 if you have the <endian.h> header file. */
 #ifdef WIN32
 #define HAVE_ENDIAN_H 0
+#elif __APPLE__
+#define HAVE_ENDIAN_H 0
 #else
 #define HAVE_ENDIAN_H 1
 #endif
@@ -67,11 +75,19 @@
 /* Define to 1 if you have the `fstat' function. */
 #define HAVE_FSTAT 1
 
+#if __APPLE__
+/* Define to 1 if you have the `fstat64' function. */
+#define HAVE_FSTAT64 1
+
+/* Define to 1 if you have the `fsync' function. */
+#define HAVE_FSYNC 1
+#else
 /* Define to 1 if you have the `fstat64' function. */
 #define HAVE_FSTAT64 0
 
 /* Define to 1 if you have the `fsync' function. */
 #define HAVE_FSYNC 0
+#endif
 
 /* Define to 1 if you have the `ftruncate' function. */
 #define HAVE_FTRUNCATE 1
@@ -139,7 +155,11 @@
 #define HAVE_LSEEK 1
 
 /* Define to 1 if you have the `lseek64' function. */
+#if __APPLE__
+#define HAVE_LSEEK64 0
+#else
 #define HAVE_LSEEK64 1
+#endif
 
 /* Define to 1 if you have the `malloc' function. */
 #define HAVE_MALLOC 1
