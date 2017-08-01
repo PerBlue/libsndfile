@@ -96,7 +96,16 @@
 #define HAVE_GETPAGESIZE 1
 
 /* Define to 1 if you have the `gettimeofday' function. */
+#if __APPLE__
+#include "TargetConditionals.h"
+#if TARGET_OS_MAC
 #define HAVE_GETTIMEOFDAY 1
+#else
+#define HAVE_GETTIMEOFDAY 0
+#endif
+#else
+#define HAVE_GETTIMEOFDAY 1
+#endif
 
 #ifdef WIN32
 /* Define if you have the `gmtime' function. */
