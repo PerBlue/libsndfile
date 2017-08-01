@@ -40,7 +40,7 @@
 
 #include <ogg/ogg.h>
 
-#include "ogg.h"
+#include "sf_ogg.h"
 
 typedef struct
 {	int32_t serialno ;

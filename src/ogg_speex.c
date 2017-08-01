@@ -45,7 +45,7 @@
 #include <speex/speex_header.h>
 #include <speex/speex_callbacks.h>
 
-#include "ogg.h"
+#include "sf_ogg.h"
 
 #define	OGG_SPX_READ_SIZE	200
 

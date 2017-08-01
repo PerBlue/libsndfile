@@ -40,7 +40,7 @@
 
 #include <ogg/ogg.h>
 
-#include "ogg.h"
+#include "sf_ogg.h"
 
 static int	ogg_close (SF_PRIVATE *psf) ;
 static int	ogg_stream_classify (SF_PRIVATE *psf, OGG_PRIVATE * odata) ;
