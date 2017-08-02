@@ -76,8 +76,14 @@
 #define HAVE_FSTAT 1
 
 #if __APPLE__
+#include "TargetConditionals.h"
+#if TARGET_OS_MAC
 /* Define to 1 if you have the `fstat64' function. */
 #define HAVE_FSTAT64 1
+#else
+/* Define to 1 if you have the `fstat64' function. */
+#define HAVE_FSTAT64 0
+#endif
 
 /* Define to 1 if you have the `fsync' function. */
 #define HAVE_FSYNC 1
