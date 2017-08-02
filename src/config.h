@@ -77,12 +77,12 @@
 
 #if __APPLE__
 #include "TargetConditionals.h"
-#if TARGET_OS_MAC
-/* Define to 1 if you have the `fstat64' function. */
-#define HAVE_FSTAT64 1
-#else
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 /* Define to 1 if you have the `fstat64' function. */
 #define HAVE_FSTAT64 0
+#else
+/* Define to 1 if you have the `fstat64' function. */
+#define HAVE_FSTAT64 1
 #endif
 
 /* Define to 1 if you have the `fsync' function. */
@@ -104,10 +104,10 @@
 /* Define to 1 if you have the `gettimeofday' function. */
 #if __APPLE__
 #include "TargetConditionals.h"
-#if TARGET_OS_MAC
-#define HAVE_GETTIMEOFDAY 1
-#else
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 #define HAVE_GETTIMEOFDAY 0
+#else
+#define HAVE_GETTIMEOFDAY 1
 #endif
 #else
 #define HAVE_GETTIMEOFDAY 1
